@@ -1,8 +1,7 @@
 # coding: utf-8
 
 from django.db import models
-from django.contrib import admin
-from scielo_livros.catalogue.fields import ThumbnailImageField
+from catalogue.fields import ThumbnailImageField
 import datetime
 
 class Book(models.Model):
@@ -44,12 +43,7 @@ class Book(models.Model):
         
     class Meta:
         ordering = ['title']
-    
-class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'publisher', 'isbn', 'year', 'status',)
-    list_filters = ('title', 'publisher', 'year',)
-    search_fields = ('title', 'publisher', 'isbn')
-    
+  
 class Author(models.Model):
     name = models.CharField(max_length=128)
     cv_lattes = models.URLField()
@@ -61,16 +55,10 @@ class Author(models.Model):
 
     class Meta:
         ordering = ['name']
-    
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email',)
-    search_fields = ('name', 'email',)
-    
+   
 class Publisher(models.Model):
     name = models.CharField(max_length=256)
     
     def __unicode__(self):
         return self.name
-    
-class PublisherAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+
